@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Blackjack Game</title>
+    <link rel="stylesheet" href="style.css"
+</head>
+<body>
+  <div class="container">
+      <button id="startButton" onclick="startGame()">Start Game</button>
+      <button id="hitButton" onclick="hit()">Hit</button>
+      <button id="standButton" onclick="stand()">Stand</button>
+      <button id="restartButton" onclick="restartGame()" style="display: none">Restart Game</button>
+      <div id="message">Welcome to Blackjack!</div>
+      <div class="cards" id="playerCards">
+        <h2>The sum of Player's card values: <span id="playerSum">0</span></h2>
+        <div id="playerCardImages"></div>
+      </div>
+      <div class="cards" id="dealerCards">
+        <h2>The sum of Dealer's card values: <span id="dealerSum">0</span></h2>
+        <div id="dealerCardImages"></div>
+      </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
