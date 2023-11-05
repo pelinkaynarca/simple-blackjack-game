@@ -7,21 +7,38 @@
     <link rel="stylesheet" href="style.css"
 </head>
 <body>
+  <div id="logoContainer">
+    <img id="blackjackLogo" src="images/blackjack-logo.png" alt="Logo">
+  </div>
   <div class="container">
+      <h1 id="message">Welcome to Simple Blackjack!</h1>
       <button id="startButton" onclick="startGame()">Start Game</button>
       <button id="hitButton" onclick="hit()">Hit</button>
       <button id="standButton" onclick="stand()">Stand</button>
       <button id="restartButton" onclick="restartGame()" style="display: none">Restart Game</button>
-      <div id="message">Welcome to Blackjack!</div>
       <div class="cards" id="playerCards">
-        <h2>The sum of Player's card values: <span id="playerSum">0</span></h2>
-        <div id="playerCardImages"></div>
-      </div>
-      <div class="cards" id="dealerCards">
-        <h2>The sum of Dealer's card values: <span id="dealerSum">0</span></h2>
-        <div id="dealerCardImages"></div>
-      </div>
-
+        <h2 class="name">PLAYER</h2>
+        <h2>Total:<span id="playerSum">0</span></h2>
+        <div id="playerCardImages">
+            <!-- Each card container with a border -->
+            <div class="cardContainer"></div>
+            <div class="cardContainer"></div>
+            <div class="cardContainer"></div>
+            <!-- Add more containers if needed -->
+        </div>
+    </div>
+    <div class="cards" id="dealerCards">
+      <h2 class="name">DEALER</h2>
+      <h2>Total:<span id="dealerSum">0</span></h2>
+        <div id="dealerCardImages">
+            <!-- Each card container with a border -->
+            <div class="cardContainer"></div>
+            <div class="cardContainer"></div>
+            <div class="cardContainer"></div>
+            <!-- Add more containers if needed -->
+        </div>
+    </div>
+    
   <script src="script.js"></script>
 </body>
 </html>

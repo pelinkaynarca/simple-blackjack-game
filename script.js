@@ -10,6 +10,7 @@ let dealerSum = 0;
 let gameEnded = false;
 
 // DOM elements
+const logo = document.getElementById("blackjackLogo");
 const cardsClass = document.getElementsByClassName("cards");
 const startButton = document.getElementById("startButton");
 const hitButton = document.getElementById("hitButton");
@@ -35,12 +36,13 @@ function startGame() {
         card.style.display = "block";
     }
 
+    logo.style.cssText = "width: 50px; position: fixed; top: 0; right: 0; margin: 20px";
     startButton.style.display = "none";
     hitButton.style.display = "block";
     standButton.style.display = "block";
     restartButton.style.display = "none";
 
-    message.textContent = "Let's play! Click Hit to get your cards.";
+    message.textContent = "Let's play! Hit or Stand!";
 
     // Shuffle a new deck
     fetch(`${apiUrl}/new/shuffle/?deck_count=1`)
@@ -60,7 +62,19 @@ function drawCards(count, container, cardArray, SumDisplay) {
             data.cards.forEach(card => {
                 const cardElement = document.createElement("img");
                 cardElement.src = card.image;
-                container.appendChild(cardElement);
+                cardElement.style.height = "200px";
+
+                // Create a card container and add the card to it
+                const cardContainer = document.createElement("div");
+                cardContainer.classList.add("cardContainer");
+                cardContainer.appendChild(cardElement);
+
+                // Initially hide the card container
+                cardContainer.style.display = "inline-flex";
+
+                // Add the card container to the specified container
+                container.appendChild(cardContainer);
+
                 cardArray.push(card);
                 SumDisplay.textContent = calculateSum(cardArray);
             });
@@ -70,6 +84,10 @@ function drawCards(count, container, cardArray, SumDisplay) {
             }
         });
 }
+
+
+
+
 
 // Calculate the Sum value of the cards
 function calculateSum(cards) {
@@ -108,7 +126,6 @@ function stand() {
     }
 
     endGame();
-    alert("stand çalışıyor!")
 }
 
 // End the game and determine the winner
@@ -123,9 +140,9 @@ function endGame() {
 
     if (playerSum > 21 || (dealerSum <= 21 && dealerSum >= playerSum)) {
         message.textContent = "Dealer wins!";
-    } else if (dealerSum > 21 || playerSum > dealerSum) {
+    } else if (dealerSum > 21 || playerSum <= 21 && playerSum >= dealerSum) {
         message.textContent = "Player wins!";
-    } else {
+    } else if (dealerSum === playerSum) {
         message.textContent = "It's a tie!";
     }
 }
