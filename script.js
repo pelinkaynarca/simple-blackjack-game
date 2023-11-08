@@ -69,8 +69,8 @@ function drawCards(count, container, cardArray, SumDisplay) {
                 cardContainer.classList.add("cardContainer");
                 cardContainer.appendChild(cardElement);
 
-                // Initially hide the card container
-                cardContainer.style.display = "inline-flex";
+                // Styles for the cardContainer
+                cardContainer.style.cssText = "border: 4px solid goldenrod; margin: 5px; display: inline-flex; padding: 5px; border-radius: 15px";
 
                 // Add the card container to the specified container
                 container.appendChild(cardContainer);
@@ -84,8 +84,6 @@ function drawCards(count, container, cardArray, SumDisplay) {
             }
         });
 }
-
-
 
 
 
@@ -138,9 +136,13 @@ function endGame() {
     const playerSum = calculateSum(playerCards);
     const dealerSum = calculateSum(dealerCards);
 
-    if (playerSum > 21 || (dealerSum <= 21 && dealerSum >= playerSum)) {
+     // Calculate the absolute differences
+     const playerDifference = Math.abs(21 - playerSum);
+     const dealerDifference = Math.abs(21 - dealerSum);
+
+    if (playerSum > 21 || dealerSum === 21 || playerDifference > dealerDifference) {
         message.textContent = "Dealer wins!";
-    } else if (dealerSum > 21 || playerSum <= 21 && playerSum >= dealerSum) {
+    } else if (dealerSum > 21 || playerSum === 21 || dealerDifference > playerDifference ) {
         message.textContent = "Player wins!";
     } else if (dealerSum === playerSum) {
         message.textContent = "It's a tie!";
