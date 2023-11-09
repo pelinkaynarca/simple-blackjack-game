@@ -79,7 +79,7 @@ function drawCards(count, container, cardArray, SumDisplay) {
                 SumDisplay.textContent = calculateSum(cardArray);
             });
 
-            if (calculateSum(cardArray) > 21) {
+            if (calculateSum(cardArray) >= 21) {
                 endGame();
             }
         });
@@ -144,7 +144,7 @@ function endGame() {
         message.textContent = "Dealer wins!";
     } else if (dealerSum > 21 || playerSum === 21 || dealerDifference > playerDifference ) {
         message.textContent = "Player wins!";
-    } else if (dealerSum === playerSum) {
+    } else if (dealerSum = playerSum) {
         message.textContent = "It's a tie!";
     }
 }
